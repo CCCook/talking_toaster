@@ -63,14 +63,17 @@ if img_file_buffer:
 else:
     st.write(f"We were not able to upload your photo, please try again 🙌")
 
-
+device_manuals_list = ['toaster','refridgerator','oven']
 # Calling the PDF
 if image_pred:
     object = image_pred[0]
-    #object = 'toaster'
-    vector_db = embed_and_vectorize_pdf(object)
-    question = st.text_input('Please input your question')
-    # Calling ChatGPT only after object is recognized.
-    if question:
-        response = communicate_with_manual(vector_db, question)
-        st.write(response)
+    object = 'toaster'
+    if object in device_manuals_list:
+        vector_db = embed_and_vectorize_pdf(object)
+        question = st.text_input('Please input your question')
+        # Calling ChatGPT only after object is recognized.
+        if question:
+            response = communicate_with_manual(vector_db, question)
+            st.write(response)
+        else:
+            print("No existing manual - please restart recognition")

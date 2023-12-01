@@ -48,7 +48,7 @@ def communicate_with_manual(vector_db, question):
 # Example usage:
 object_type = "toaster"
 question = "What age can it be used from?"
-print(os.getcwd())
+print(os.environ.get("OPENAI_API_KEY"))
 vector_db = embed_and_vectorize_pdf(object_type)
 result = communicate_with_manual(vector_db, question)
 print(result)
